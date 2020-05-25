@@ -346,6 +346,15 @@ class CiHelper
      */
     private function execute(string $name, $command, $silence = false, $env = null): int
     {
+        if (!is_array($command)) {
+            $command = explode(' ', $command);
+
+            // Filter empty array elements
+            $command = array_filter($command, function ($value) {
+                return $value !== '';
+            });
+        }
+
         $start = microtime(true);
         $proc = new Process($command, null, $env);
 
