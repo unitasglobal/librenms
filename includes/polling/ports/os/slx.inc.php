@@ -12,7 +12,7 @@ foreach ($slx_vlan_stats as $index => $value) {
             $ifIndex = $matches[2].sprintf('%04d', $value);
             $slx_vlan_ports[$key] = [];
             $slx_vlan_ports[$key]['ifIndex'] = $ifIndex;
-            if (array_key_exists(matches[2], $port_stats)) {
+            if (isset($port_stats[$matches[2]])) {
                 $slx_vlan_ports[$key]['ifName'] = $port_stats[$matches[2]]['ifName'].'.'.$value;
                 $slx_vlan_ports[$key]['ifDescr'] = $port_stats[$matches[2]]['ifDescr'].'.'.$value;
                 $slx_vlan_ports[$key]['ifAlias'] = $port_stats[$matches[2]]['ifAlias'].'  VLAN '.$value;
